@@ -1,8 +1,6 @@
 # CSVBox
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/csv_box`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+CSVBOx provides DLS to define CSV header layout.
 
 ## Installation
 
@@ -22,7 +20,30 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+Book = Struct.new(:id, :title, :price)
+books = [Book.new(1, 'How to cook delicious meals', 1500), Book.new(2, '10 tips to lose weight', 250)]
+
+CSVBox.add 'book' do
+  field 'id'
+  field 'title'
+  field 'price'
+end
+
+CSVBox.layouts 'book' do
+  layout 'shuffled layout' do |box|
+    box.price
+    box.id
+    box.title
+  end
+end
+
+box = CSVBox.take 'book', 'shuffled layout'
+
+books.each do |book|
+  box << book
+end
+```
 
 ## Development
 
