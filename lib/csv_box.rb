@@ -6,6 +6,10 @@ module CSVBox
     @boxmap ||= {}
     @boxmap.store(box, block)
   end
+  
+  def self.box_names
+    @boxmap.keys
+  end
 
   def self.take(box, layout)
     box_layout = @layoutmap.fetch(box)

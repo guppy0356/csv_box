@@ -21,6 +21,12 @@ RSpec.describe CSVBox do
       double(id: 2, title: '10 tips to lose weight', price: 250)
     ]
   end
+  
+  describe '.box_names' do
+    example 'get box names' do
+      expect(CSVBox.box_names).to match(['book'])
+    end
+  end
 
   describe '.take' do
     example 'print csv with shuffled layout' do
